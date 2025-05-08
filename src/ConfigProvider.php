@@ -36,16 +36,15 @@ final class ConfigProvider
                 'provider' => [
                     // BlockSettingsFilter::class,
                     // BlockStylesRegistry::class,
-                    // ThemeUpdater::class,
+                    // ThemeJsonUpdater::class,
                 ],
             ],
             'dependencies' => [
-                'aliases' => [
-                    // ThemeProviderInterface::class => ThemeProvider::class,
-                ],
+                'aliases' => [],
                 'factories' => [
                     BlockSettingsFilter::class => BlockSettingsFilterFactory::class,
                     BlockStylesRegistry::class => BlockStylesRegistryFactory::class,
+                    ThemeJsonUpdater::class => ThemeJsonUpdaterFactory::class,
                 ],
             ],
         ];
