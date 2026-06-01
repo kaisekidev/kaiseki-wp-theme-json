@@ -6,6 +6,7 @@ namespace Kaiseki\WordPress\ThemeJson;
 
 use WP_Theme_JSON_Data;
 
+use function is_array;
 use function sprintf;
 use function wp_trigger_error;
 
@@ -39,7 +40,11 @@ final readonly class BlockSettingsUpdater
         }
 
         $data = $themeJson->get_data();
-        $data['settings']['blocks'][$name] = $blockSettings;
+        $settings = is_array($data['settings'] ?? null) ? $data['settings'] : [];
+        $blocks = is_array($settings['blocks'] ?? null) ? $settings['blocks'] : [];
+        $blocks[$name] = $blockSettings;
+        $settings['blocks'] = $blocks;
+        $data['settings'] = $settings;
 
         return $themeJson->update_with($data);
     }
@@ -49,7 +54,9 @@ final readonly class BlockSettingsUpdater
         string $name,
     ): bool {
         $data = $themeJson->get_data();
+        $settings = is_array($data['settings'] ?? null) ? $data['settings'] : [];
+        $blocks = is_array($settings['blocks'] ?? null) ? $settings['blocks'] : [];
 
-        return isset($data['settings']['blocks'][$name]);
+        return isset($blocks[$name]);
     }
 }
