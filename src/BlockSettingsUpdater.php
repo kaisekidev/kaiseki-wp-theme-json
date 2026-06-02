@@ -30,7 +30,7 @@ final readonly class BlockSettingsUpdater
             wp_trigger_error(
                 'Kaiseki\WordPress\ThemeJson\BlockSettingsFilter->filterTheme',
                 sprintf(
-                    'Block name %s doesn\'t exist in theme.json',
+                    'Block name %s already exists in theme.json',
                     $name,
                 ),
                 E_USER_WARNING,

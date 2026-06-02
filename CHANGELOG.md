@@ -24,6 +24,9 @@ First tagged release, aligned to the kaiseki PHP-8.4 baseline.
 
 ### Fixed
 
+- `BlockSettingsUpdater::update()` warning message now reads "already exists" — it fires when the block
+  name is already present (the guard that skips overwriting an existing entry), but previously the text
+  said "doesn't exist", which was misleading. No behaviour change.
 - PHPStan level-max findings fixed at the root (no suppression):
   - `BlockSettingsUpdater` narrows `WP_Theme_JSON_Data::get_data()`'s untyped array at runtime before
     reading/writing the nested `settings.blocks` offsets.
