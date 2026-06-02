@@ -27,8 +27,7 @@ trait DataTrait
             if (is_array($value) && Arr::isAssoc($value)) {
                 $cleanedValue = self::deepRemoveNulls($value);
 
-                // @phpstan-ignore-next-line
-                if (!empty($cleanedValue)) {
+                if ($cleanedValue !== []) {
                     $result[$key] = $cleanedValue;
                 }
 
